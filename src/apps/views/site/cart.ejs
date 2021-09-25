@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <!-- head -->
+    <%- include("layout/head", {tittle : "Cart"})%>
+
+</head>
+
+<body>
+
+    <!--	Header	-->
+    <%- include("layout/header")%>
+
+        <!--	End Header	-->
+
+        <!--	Body	-->
+        <div id="body">
+            <div class="container">
+                <!-- menu -->
+                <%- include("layout/menu")%>
+                    <!-- end menu -->
+                    <div class="row">
+                        <div id="main" class="col-lg-8 col-md-12 col-sm-12">
+                            <!--	Slider	-->
+                            <%- include("layout/slide")%>
+                                <!--	End Slider	-->
+
+                                <!--	Cart	-->
+                                <div id="my-cart">
+                                    <div class="row">
+                                        <div class="cart-nav-item col-lg-7 col-md-7 col-sm-12">Thông tin sản phẩm</div>
+                                        <div class="cart-nav-item col-lg-2 col-md-2 col-sm-12">Tùy chọn</div>
+                                        <div class="cart-nav-item col-lg-3 col-md-3 col-sm-12">Giá</div>
+                                    </div>
+                                    <form method="post" , action="updateCart">
+
+                                        <% for(let product of products){%>
+                                            <% totalPrice += product.price*product.qty%>
+                                                <div class="cart-item row">
+                                                    <div class="cart-thumb col-lg-7 col-md-7 col-sm-12">
+                                                        <img src="/static/images/<%=product.img%>">
+                                                        <h4>
+                                                            <%=product.name%>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="cart-quantity col-lg-2 col-md-2 col-sm-12">
+                                                        <input type="number" name="products[<%=product.id%>][qty]" class="form-control form-blue quantity" value="<%=product.qty%>" min="1">
+                                                    </div>
+                                                    <div class="cart-price col-lg-3 col-md-3 col-sm-12"><b><%=new Intl.NumberFormat("vi-VN", {style: "currency", currency: "VND"}).format(product.price*product.qty)%></b><a href="delCart-<%=product.id%>">Xóa</a></div>
+                                                </div>
+                                                <%}%>
+
+                                                    <div class="row">
+                                                        <div class="cart-thumb col-lg-7 col-md-7 col-sm-12">
+                                                            <button id="updateCart" class="btn btn-success" type="submit" name="sbm">Cập nhật giỏ hàng</button>
+                                                        </div>
+                                                        <div class="cart-total col-lg-2 col-md-2 col-sm-12"><b>Tổng cộng:</b></div>
+                                                        <div class="cart-price col-lg-3 col-md-3 col-sm-12"><b><%=new Intl.NumberFormat("vi-VN", {style: "currency", currency: "VND"}).format(totalPrice)%></b></div>
+                                                    </div>
+                                    </form>
+
+                                </div>
+                                <!--	End Cart	-->
+
+                                <!--	Customer Info	-->
+                                <div id="customer">
+                                    <form method="post" action="/order">
+                                        <div class="row">
+
+                                            <div id="customer-name" class="col-lg-4 col-md-4 col-sm-12">
+                                                <input placeholder="Họ và tên (bắt buộc)" type="text" name="name" class="form-control" required>
+                                            </div>
+                                            <div id="customer-phone" class="col-lg-4 col-md-4 col-sm-12">
+                                                <input placeholder="Số điện thoại (bắt buộc)" type="text" name="phone" class="form-control" required>
+                                            </div>
+                                            <div id="customer-mail" class="col-lg-4 col-md-4 col-sm-12">
+                                                <input placeholder="Email (bắt buộc)" type="text" name="mail" class="form-control" required>
+                                            </div>
+                                            <div id="customer-add" class="col-lg-12 col-md-12 col-sm-12">
+                                                <input placeholder="Địa chỉ nhà riêng hoặc cơ quan (bắt buộc)" type="text" name="add" class="form-control" required>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="by-now col-lg-6 col-md-6 col-sm-12">
+                                                <button type="submit" class="btn btn-danger">
+                            	                <b>Mua ngay</b>
+                                                <span>Giao hàng tận nơi siêu tốc</span>
+                                            </button>
+                                            </div>
+                                            <div class="by-now col-lg-6 col-md-6 col-sm-12">
+                                                <button type="button" class="btn btn-primary">
+                            	                <b>Trả góp Online</b>
+                                                <span>Vui lòng call (+84) 0988 550 553</span>
+                                            </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!--	End Customer Info	-->
+
+                        </div>
+                        <%- include("layout/sidebar")%>
+                            <!-- sidebar -->
+                    </div>
+            </div>
+        </div>
+        <!--	End Body	-->
+
+        <div id="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div id="logo-2" class="col-lg-3 col-md-6 col-sm-12">
+                        <h2>
+                            <a href="#"><img src="images/logo-footer.png"></a>
+                        </h2>
+                        <p>
+                            Vietpro Academy thành lập năm 2009. Chúng tôi đào tạo chuyên sâu trong 2 lĩnh vực là Lập trình Website & Mobile nhằm cung cấp cho thị trường CNTT Việt Nam những lập trình viên thực sự chất lượng, có khả năng làm việc độc lập, cũng như Team Work ở mọi
+                            môi trường đòi hỏi sự chuyên nghiệp cao.
+                        </p>
+                    </div>
+                    <div id="address" class="col-lg-3 col-md-6 col-sm-12">
+                        <h3>Địa chỉ</h3>
+                        <p>B8A Võ Văn Dũng - Hoàng Cầu Đống Đa - Hà Nội</p>
+                        <p>Số 25 Ngõ 178/71 - Tây Sơn Đống Đa - Hà Nội</p>
+                    </div>
+                    <div id="service" class="col-lg-3 col-md-6 col-sm-12">
+                        <h3>Dịch vụ</h3>
+                        <p>Bảo hành rơi vỡ, ngấm nước Care Diamond</p>
+                        <p>Bảo hành Care X60 rơi vỡ ngấm nước vẫn Đổi mới</p>
+                    </div>
+                    <div id="hotline" class="col-lg-3 col-md-6 col-sm-12">
+                        <h3>Hotline</h3>
+                        <p>Phone Sale: (+84) 0988 550 553</p>
+                        <p>Email: vietpro.edu.vn@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--	Footer	-->
+        <%- include("layout/footer")%>
+
+            <!--	End Footer	-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
