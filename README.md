@@ -1,2 +1,3 @@
 # Viet_pro_shopname
-remake project website 
+wweb bán hàng, backend dùng nodejs.
+front-end dùng template có sẵn. 
