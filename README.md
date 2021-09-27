@@ -7,3 +7,4 @@
 -có thể đăng nhập, lấy lại mật khẩu khi quên mật khẩu qua mã code được gửi về email.
 - cách sử dụng: tải code về,install các packege  cần có ( chạy lệnh : 'npm install' trong thư mục gốc. 
 -chạy file src/bin/www để hiện thị web  
+-sử dụng file vp_shop_project ( file data ) lưu dữ liệu người dùng, thông tin sản phẩm.
